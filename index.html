@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HealthBridge – Chandigarh</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1D3A;
+    --navy-mid: #162B52;
+    --navy-light: #1E3A6E;
+    --red: #E8293A;
+    --red-light: #FF4455;
+    --red-bg: #FFF0F1;
+    --teal: #0EA5A0;
+    --teal-bg: #F0FAFA;
+    --white: #FFFFFF;
+    --gray-50: #F8F9FB;
+    --gray-100: #EEF0F4;
+    --gray-300: #C4C9D4;
+    --gray-500: #7A8499;
+    --gray-700: #3D4558;
+    --green: #16A34A;
+    --green-bg: #F0FDF4;
+    --amber: #D97706;
+    --amber-bg: #FFFBEB;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 2px 16px rgba(11,29,58,0.10);
+    --shadow-lg: 0 8px 40px rgba(11,29,58,0.15);
+  }
+  body { font-family: var(--font-body); background: var(--gray-50); color: var(--navy); min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { font-family: var(--font-display); color: var(--white); font-size: 22px; letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--teal); }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.1); color: white; }
+  .nav-staff-btn {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  .nav-staff-btn:hover { background: rgba(255,255,255,0.2) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0D2144 100%);
+    padding: 60px 32px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14,165,160,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(14,165,160,0.15);
+    border: 1px solid rgba(14,165,160,0.3);
+    color: var(--teal);
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 17px;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  /* ── EMERGENCY BUTTON ── */
+  .emergency-center { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 48px; }
+  .emergency-btn {
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    padding: 22px 52px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 0 0 0 rgba(232,41,58,0.5);
+    animation: emergencyPulse 2.5s infinite;
+    transition: transform 0.15s, background 0.15s;
+    letter-spacing: -0.3px;
+  }
+  .emergency-btn:hover { background: var(--red-light); transform: scale(1.03); }
+  .emergency-btn:active { transform: scale(0.98); }
+  @keyframes emergencyPulse {
+    0% { box-shadow: 0 0 0 0 rgba(232,41,58,0.5); }
+    70% { box-shadow: 0 0 0 20px rgba(232,41,58,0); }
+    100% { box-shadow: 0 0 0 0 rgba(232,41,58,0); }
+  }
+  .emergency-icon { font-size: 24px; }
+  .emergency-label { font-size: 13px; color: rgba(255,255,255,0.55); letter-spacing: 0.3px; }
+
+  /* ── ACTION CARDS ── */
+  .action-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .action-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 24px 32px;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+    text-align: center;
+    color: white;
+  }
+  .action-card:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+  .action-card-icon { font-size: 28px; margin-bottom: 10px; }
+  .action-card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .action-card-sub { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 48px 32px; max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-sub { color: var(--gray-500); font-size: 15px; margin-bottom: 32px; }
+
+  /* ── HOSPITAL CARDS ── */
+  .hospital-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .hospital-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-100);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .hospital-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .hospital-card-header {
+    background: var(--navy);
+    padding: 18px 22px 16px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .hospital-name { font-weight: 700; color: white; font-size: 16px; line-height: 1.3; }
+  .hospital-type {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 100px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap; margin-left: 10px; margin-top: 2px;
+  }
+  .hospital-card-body { padding: 18px 22px; }
+  .hospital-meta { font-size: 13px; color: var(--gray-500); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+  .bed-summary { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .bed-badge {
+    display: flex; flex-direction: column; align-items: center;
+    background: var(--gray-50);
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 80px;
+    border: 1px solid var(--gray-100);
+  }
+  .bed-count { font-size: 22px; font-weight: 700; line-height: 1; }
+  .bed-count.green { color: var(--green); }
+  .bed-count.amber { color: var(--amber); }
+  .bed-count.red { color: var(--red); }
+  .bed-type { font-size: 11px; color: var(--gray-500); margin-top: 4px; text-align: center; }
+  .distance-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600;
+    color: var(--teal);
+    background: var(--teal-bg);
+    padding: 4px 10px; border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .card-actions { display: flex; gap: 8px; }
+  .btn { padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; font-family: var(--font-body); }
+  .btn-primary { background: var(--navy); color: white; flex: 1; }
+  .btn-primary:hover { background: var(--navy-light); }
+  .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-300); }
+  .btn-outline:hover { border-color: var(--navy); background: var(--gray-50); }
+  .btn-red { background: var(--red); color: white; flex: 1; }
+  .btn-red:hover { background: var(--red-light); }
+  .btn-teal { background: var(--teal); color: white; flex: 1; }
+  .btn-teal:hover { background: #0c9490; }
+
+  /* ── DEPARTMENT TAGS ── */
+  .dept-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .dept-tag {
+    font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: 100px;
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    opacity: 0.7;
+  }
+
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(11,29,58,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: white;
+    border-radius: var(--radius-lg);
+    width: 100%; max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.2s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform: translateY(20px) scale(0.97); } to { opacity:1; transform: none; } }
+  .modal-header {
+    background: var(--navy);
+    padding: 24px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .modal-title { font-family: var(--font-display); font-size: 20px; color: white; font-weight: 700; }
+  .modal-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+  .modal-close:hover { background: rgba(255,255,255,0.25); }
+  .modal-body { padding: 28px; }
+
+  /* ── FORMS ── */
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .form-input, .form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    color: var(--navy);
+    background: var(--gray-50);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+  }
+  .form-input:focus, .form-select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(14,165,160,0.12); background: white; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── LOCATION SEARCH ── */
+  .location-search-box {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .location-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .location-sub { font-size: 13px; color: var(--gray-500); margin-bottom: 20px; }
+
+  /* ── EMERGENCY PANEL ── */
+  .emergency-panel {
+    display: none;
+    background: var(--red-bg);
+    border: 1.5px solid rgba(232,41,58,0.25);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin: 0 32px 32px;
+    max-width: 1100px;
+    margin-left: auto; margin-right: auto;
+    animation: slideDown 0.3s ease;
+  }
+  @keyframes slideDown { from { opacity:0; transform: translateY(-12px); } to { opacity:1; transform: none; } }
+  .emergency-panel.active { display: block; }
+  .emergency-panel-title { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--red); margin-bottom: 6px; }
+  .emergency-panel-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--navy);
+    color: white;
+    padding: 16px 22px;
+    border-radius: 12px;
+    font-size: 14px; font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    display: none;
+    animation: toastIn 0.3s ease;
+    max-width: 340px;
+  }
+  .toast.active { display: flex; align-items: center; gap: 10px; }
+  @keyframes toastIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: none; } }
+  .toast-icon { font-size: 18px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy-mid);
+    padding: 16px 32px;
+    display: flex; justify-content: center; gap: 48px;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; color: white; }
+  .stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--teal); }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.3px; }
+
+  /* ── STATUS DOT ── */
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  .status-dot.green { background: var(--green); }
+  .status-dot.amber { background: var(--amber); }
+  .status-dot.red { background: var(--red); }
+
+  /* ── TABS ── */
+  .tab-bar { display: flex; gap: 4px; background: var(--gray-100); border-radius: 12px; padding: 4px; margin-bottom: 28px; width: fit-content; }
+  .tab { padding: 10px 20px; border-radius: 9px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--gray-500); transition: all 0.15s; font-family: var(--font-body); }
+  .tab.active { background: white; color: var(--navy); box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
+
+  /* ── DEPT SCHEDULE ── */
+  .dept-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .dept-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .dept-card:hover { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(14,165,160,0.1); }
+  .dept-card.selected { border-color: var(--teal); background: var(--teal-bg); }
+  .dept-card-name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .dept-card-info { font-size: 12px; color: var(--gray-500); }
+  .dept-card-avail { display: flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 12px; font-weight: 600; }
+
+  /* ── TIME SLOTS ── */
+  .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
+  .slot {
+    padding: 10px;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: white;
+  }
+  .slot:hover { border-color: var(--teal); background: var(--teal-bg); }
+  .slot.selected { border-color: var(--teal); background: var(--teal); color: white; }
+  .slot.full { background: var(--gray-50); color: var(--gray-300); cursor: not-allowed; border-color: var(--gray-100); text-decoration: line-through; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filter-chip {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid var(--gray-100);
+    background: white;
+    color: var(--gray-700);
+    transition: all 0.15s;
+  }
+  .filter-chip:hover { border-color: var(--navy); color: var(--navy); }
+  .filter-chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .hero { padding: 40px 16px 60px; }
+    .section { padding: 32px 16px; }
+    .stats-bar { gap: 24px; padding: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    .emergency-panel { margin: 0 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Health<span>Bridge</span></div>
+  <div class="nav-links">
+    <a href="#hospitals">Hospitals</a>
+    <a href="#departments">Departments</a>
+    <a href="staff.html" class="nav-staff-btn">Staff Login →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Live · Chandigarh Tricity</div>
+  <h1>Find care when it<br/><em>matters most</em></h1>
+  <p>Real-time bed availability and instant appointment booking across Chandigarh, Mohali, and Panchkula.</p>
+
+  <!-- EMERGENCY BUTTON -->
+  <div class="emergency-center">
+    <button class="emergency-btn" onclick="toggleEmergency()">
+      <span class="emergency-icon">🚨</span>
+      Emergency — Find Available Beds Now
+    </button>
+    <span class="emergency-label">Tap to find the nearest hospital with available beds</span>
+  </div>
+
+  <!-- ACTION CARDS -->
+  <div class="action-cards">
+    <div class="action-card" onclick="openBooking()">
+      <div class="action-card-icon">📅</div>
+      <div class="action-card-title">Book Appointment</div>
+      <div class="action-card-sub">Schedule OPD visit by department</div>
+    </div>
+    <div class="action-card" onclick="scrollToSection('hospitals')">
+      <div class="action-card-icon">🏥</div>
+      <div class="action-card-title">Check Availability</div>
+      <div class="action-card-sub">Live bed count across all hospitals</div>
+    </div>
+    <div class="action-card" onclick="scrollToSection('departments')">
+      <div class="action-card-icon">🩺</div>
+      <div class="action-card-title">Browse Departments</div>
+      <div class="action-card-sub">Ortho, Cardio, Dermo and more</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num" id="totalHospitals">8</div>
+    <div class="stat-label">Hospitals live</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="totalBeds">0</div>
+    <div class="stat-label">Total available beds</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="totalDepts">24</div>
+    <div class="stat-label">Departments</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="lastUpdated">Now</div>
+    <div class="stat-label">Last updated</div>
+  </div>
+</div>
+
+<!-- EMERGENCY PANEL -->
+<div class="emergency-panel" id="emergencyPanel">
+  <div class="emergency-panel-title">🚨 Emergency — Nearest beds available</div>
+  <div class="emergency-panel-sub" id="emergencySubtext">Showing hospitals nearest to your location with beds available right now.</div>
+  <div id="emergencyResults"></div>
+</div>
+
+<!-- HOSPITALS SECTION -->
+<div class="section" id="hospitals">
+  <div class="section-title">All hospitals</div>
+  <div class="section-sub">Live bed availability — updated by hospital staff</div>
+
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <div class="filter-chip active" onclick="filterHospitals('all', this)">All</div>
+    <div class="filter-chip" onclick="filterHospitals('government', this)">Government</div>
+    <div class="filter-chip" onclick="filterHospitals('private', this)">Private</div>
+    <div class="filter-chip" onclick="filterHospitals('beds', this)">Beds available</div>
+  </div>
+
+  <div class="hospital-grid" id="hospitalGrid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- DEPARTMENTS SECTION -->
+<div class="section" id="departments">
+  <div class="section-title">Book by department</div>
+  <div class="section-sub">Choose a speciality to see doctors and available slots</div>
+
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('popular', this)">Popular</button>
+    <button class="tab" onclick="switchTab('all', this)">All departments</button>
+  </div>
+
+  <div class="dept-grid" id="deptGrid">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ═══════════ MODALS ═══════════ -->
+
+<!-- BOOK APPOINTMENT MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📅 Book appointment</div>
+      <button class="modal-close" onclick="closeModal('bookingModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="bookingStep1">
+        <div class="form-group">
+          <label class="form-label">Select hospital</label>
+          <select class="form-select" id="bookHospital" onchange="loadDeptSlots()">
+            <option value="">Choose a hospital…</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select class="form-select" id="bookDept" onchange="loadTimeSlots()">
+            <option value="">Choose department…</option>
+          </select>
+        </div>
+        <div class="form-group" id="slotSection" style="display:none">
+          <label class="form-label">Available time slots</label>
+          <div class="slot-grid" id="slotGrid"></div>
+        </div>
+        <div id="patientFormSection" style="display:none">
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">Patient name</label>
+            <input type="text" class="form-input" id="patientName" placeholder="Full name"/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" id="patientPhone" placeholder="+91 98765 43210"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Age</label>
+              <input type="number" class="form-input" id="patientAge" placeholder="Age"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Brief reason for visit</label>
+            <input type="text" class="form-input" id="visitReason" placeholder="e.g. Knee pain, follow-up…"/>
+          </div>
+          <button class="btn btn-primary" style="width:100%; padding:14px; font-size:16px; border-radius:12px; margin-top:8px;" onclick="confirmBooking()">Confirm appointment →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BED BOOKING MODAL -->
+<div class="modal-overlay" id="bedModal">
+  <div class="modal">
+    <div class="modal-header" style="background: var(--red);">
+      <div class="modal-title">🛏️ Book a bed</div>
+      <button class="modal-close" onclick="closeModal('bedModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="bedModalContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING CONFIRMED MODAL -->
+<div class="modal-overlay" id="confirmedModal">
+  <div class="modal">
+    <div class="modal-header" style="background: var(--green);">
+      <div class="modal-title">✅ Booking confirmed</div>
+      <button class="modal-close" onclick="closeModal('confirmedModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="confirmedContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✅</span>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  DATA LAYER — seeded if no localStorage exists
+// ═══════════════════════════════════════════════
+const SEED_HOSPITALS = [
+  {
+    id: 'pgimer', name: 'PGIMER', type: 'government', location: 'Sector 12, Chandigarh',
+    distance: 1.2,
+    departments: ['Cardiology','Neurology','Orthopaedics','Oncology','Paediatrics','Nephrology','Gastroenterology'],
+    beds: { 'General Ward': {total:120, available:34}, 'ICU': {total:40, available:6}, 'Private Room': {total:30, available:8} }
+  },
+  {
+    id: 'gmch', name: 'GMCH Sector 32', type: 'government', location: 'Sector 32, Chandigarh',
+    distance: 2.8,
+    departments: ['Orthopaedics','Dermatology','Gynaecology','Surgery','Medicine','ENT','Ophthalmology'],
+    beds: { 'General Ward': {total:100, available:22}, 'ICU': {total:20, available:2}, 'Private Room': {total:20, available:5} }
+  },
+  {
+    id: 'fortis', name: 'Fortis Hospital', type: 'private', location: 'Phase 8, Mohali',
+    distance: 4.5,
+    departments: ['Cardiology','Orthopaedics','Neurology','Oncology','Urology','Transplant'],
+    beds: { 'Shared Room': {total:60, available:15}, 'Private Room': {total:50, available:18}, 'ICU': {total:25, available:9}, 'Suite': {total:10, available:3} }
+  },
+  {
+    id: 'max', name: 'Max Super Speciality', type: 'private', location: 'Phase 9, Mohali',
+    distance: 6.1,
+    departments: ['Cardiology','Spine Surgery','Gastroenterology','Dermatology','Psychiatry','Endocrinology'],
+    beds: { 'Shared Room': {total:50, available:11}, 'Private Room': {total:45, available:9}, 'ICU': {total:20, available:4} }
+  },
+  {
+    id: 'gmsh', name: 'GMSH Sector 16', type: 'government', location: 'Sector 16, Chandigarh',
+    distance: 3.3,
+    departments: ['Medicine','Surgery','Gynaecology','Paediatrics','Orthopaedics'],
+    beds: { 'General Ward': {total:80, available:18}, 'ICU': {total:15, available:3} }
+  },
+  {
+    id: 'mukat', name: 'Mukat Hospital', type: 'private', location: 'Sector 34, Chandigarh',
+    distance: 3.9,
+    departments: ['Neurology','Orthopaedics','Cardiology','Urology'],
+    beds: { 'Shared Room': {total:40, available:12}, 'Private Room': {total:30, available:7}, 'ICU': {total:10, available:2} }
+  },
+  {
+    id: 'civil22', name: 'Civil Hospital Sector 22', type: 'government', location: 'Sector 22, Chandigarh',
+    distance: 2.1,
+    departments: ['Medicine','Surgery','Gynaecology','ENT','Ophthalmology'],
+    beds: { 'General Ward': {total:70, available:25} }
+  },
+  {
+    id: 'amcare', name: 'Amcare Hospital', type: 'private', location: 'Kharar, Mohali',
+    distance: 8.4,
+    departments: ['Orthopaedics','Gynaecology','Dermatology','Paediatrics'],
+    beds: { 'Shared Room': {total:30, available:10}, 'Private Room': {total:20, available:6} }
+  }
+];
+
+const DEPARTMENTS = [
+  { name:'Cardiology', icon:'❤️', popular:true, desc:'Heart & vascular care' },
+  { name:'Orthopaedics', icon:'🦴', popular:true, desc:'Bones, joints & muscles' },
+  { name:'Dermatology', icon:'🩺', popular:true, desc:'Skin, hair & nails' },
+  { name:'Neurology', icon:'🧠', popular:true, desc:'Brain & nervous system' },
+  { name:'Oncology', icon:'🔬', popular:true, desc:'Cancer diagnosis & treatment' },
+  { name:'Paediatrics', icon:'👶', popular:true, desc:'Child health & development' },
+  { name:'Gynaecology', icon:'🌸', popular:false, desc:'Women\'s health & maternity' },
+  { name:'Gastroenterology', icon:'💊', popular:false, desc:'Digestive system disorders' },
+  { name:'Ophthalmology', icon:'👁️', popular:false, desc:'Eye care & surgery' },
+  { name:'ENT', icon:'👂', popular:false, desc:'Ear, nose & throat' },
+  { name:'Psychiatry', icon:'🧘', popular:false, desc:'Mental health & wellbeing' },
+  { name:'Nephrology', icon:'🫁', popular:false, desc:'Kidney disorders' },
+  { name:'Urology', icon:'⚕️', popular:false, desc:'Urinary system care' },
+  { name:'Surgery', icon:'🔪', popular:false, desc:'General & laparoscopic' },
+  { name:'Endocrinology', icon:'⚗️', popular:false, desc:'Hormones & metabolism' },
+  { name:'Medicine', icon:'💉', popular:false, desc:'General internal medicine' },
+  { name:'Spine Surgery', icon:'🦾', popular:false, desc:'Spine & spinal cord' },
+  { name:'Transplant', icon:'♻️', popular:false, desc:'Organ transplant services' },
+];
+
+const TIME_SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30'];
+
+// ── Init ──
+function getHospitals() {
+  try {
+    const stored = localStorage.getItem('hb_hospitals');
+    return stored ? JSON.parse(stored) : SEED_HOSPITALS;
+  } catch(e) { return SEED_HOSPITALS; }
+}
+function saveHospitals(data) {
+  try { localStorage.setItem('hb_hospitals', JSON.stringify(data)); } catch(e) {}
+}
+function getBookings() {
+  try { return JSON.parse(localStorage.getItem('hb_bookings') || '[]'); } catch(e) { return []; }
+}
+function saveBookings(data) {
+  try { localStorage.setItem('hb_bookings', JSON.stringify(data)); } catch(e) {}
+}
+
+// If no hospitals stored, seed them
+if (!localStorage.getItem('hb_hospitals')) {
+  saveHospitals(SEED_HOSPITALS);
+}
+
+let selectedSlot = '';
+let selectedDept = '';
+let currentFilter = 'all';
+let activeTab = 'popular';
+
+// ── RENDER HOSPITALS ──
+function renderHospitals(filter) {
+  const hospitals = getHospitals();
+  const grid = document.getElementById('hospitalGrid');
+  let filtered = hospitals;
+  if (filter === 'government') filtered = hospitals.filter(h => h.type === 'government');
+  if (filter === 'private') filtered = hospitals.filter(h => h.type === 'private');
+  if (filter === 'beds') filtered = hospitals.filter(h => totalAvailable(h) > 0);
+  filtered.sort((a,b) => a.distance - b.distance);
+
+  grid.innerHTML = filtered.map(h => {
+    const avail = totalAvailable(h);
+    const bedsHTML = Object.entries(h.beds).map(([type, data]) => {
+      const cls = data.available > 5 ? 'green' : data.available > 0 ? 'amber' : 'red';
+      return `<div class="bed-badge">
+        <span class="bed-count ${cls}">${data.available}</span>
+        <span class="bed-type">${type}</span>
+      </div>`;
+    }).join('');
+
+    const deptHTML = h.departments.slice(0,4).map(d => `<span class="dept-tag">${d}</span>`).join('') +
+      (h.departments.length > 4 ? `<span class="dept-tag">+${h.departments.length-4} more</span>` : '');
+
+    const statusClass = avail > 10 ? 'green' : avail > 0 ? 'amber' : 'red';
+    const statusText = avail > 10 ? 'Good availability' : avail > 0 ? 'Limited beds' : 'No beds';
+
+    return `<div class="hospital-card">
+      <div class="hospital-card-header">
+        <div>
+          <div class="hospital-name">${h.name}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">📍 ${h.location}</div>
+        </div>
+        <div class="hospital-type">${h.type === 'government' ? 'Govt' : 'Private'}</div>
+      </div>
+      <div class="hospital-card-body">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <span class="distance-badge">📍 ${h.distance} km away</span>
+          <span style="font-size:12px;font-weight:600;color:var(--${statusClass})">
+            <span class="status-dot ${statusClass}"></span>${statusText}
+          </span>
+        </div>
+        <div class="bed-summary">${bedsHTML}</div>
+        <div class="dept-list">${deptHTML}</div>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="openBookingFor('${h.id}')">Book appointment</button>
+          <button class="btn btn-outline" onclick="openBedModal('${h.id}')">Book bed</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Update stats
+  const totalAvailBeds = hospitals.reduce((sum, h) => sum + totalAvailable(h), 0);
+  document.getElementById('totalBeds').textContent = totalAvailBeds;
+}
+
+function totalAvailable(h) {
+  return Object.values(h.beds).reduce((s, b) => s + b.available, 0);
+}
+
+// ── RENDER DEPARTMENTS ──
+function renderDepts(tab) {
+  const grid = document.getElementById('deptGrid');
+  const hospitals = getHospitals();
+  const list = tab === 'popular' ? DEPARTMENTS.filter(d => d.popular) : DEPARTMENTS;
+
+  grid.innerHTML = list.map(d => {
+    const hospsWithDept = hospitals.filter(h => h.departments.includes(d.name));
+    return `<div class="dept-card" onclick="openBookingForDept('${d.name}')">
+      <div style="font-size:24px;margin-bottom:8px">${d.icon}</div>
+      <div class="dept-card-name">${d.name}</div>
+      <div class="dept-card-info">${d.desc}</div>
+      <div class="dept-card-avail">
+        <span class="status-dot green"></span>
+        ${hospsWithDept.length} hospital${hospsWithDept.length !== 1 ? 's' : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── TABS ──
+function switchTab(tab, el) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderDepts(tab);
+}
+
+// ── FILTERS ──
+function filterHospitals(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderHospitals(filter);
+}
+
+// ── EMERGENCY ──
+function toggleEmergency() {
+  const panel = document.getElementById('emergencyPanel');
+  const isActive = panel.classList.contains('active');
+  if (isActive) { panel.classList.remove('active'); return; }
+  panel.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  renderEmergencyResults();
+}
+
+function renderEmergencyResults() {
+  const hospitals = getHospitals();
+  const sorted = hospitals
+    .filter(h => totalAvailable(h) > 0)
+    .sort((a,b) => a.distance - b.distance);
+
+  document.getElementById('emergencySubtext').textContent =
+    `${sorted.length} hospitals with available beds found near Chandigarh`;
+
+  const results = document.getElementById('emergencyResults');
+  if (sorted.length === 0) {
+    results.innerHTML = '<p style="color:var(--gray-500)">No beds currently available. Please call 112.</p>';
+    return;
+  }
+
+  results.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">` +
+    sorted.slice(0,6).map((h, i) => {
+      const bedList = Object.entries(h.beds)
+        .filter(([, d]) => d.available > 0)
+        .map(([type, d]) => `<span style="font-size:12px;font-weight:600;color:var(--green)">${d.available} ${type}</span>`)
+        .join(' · ');
+      return `<div style="background:white;border-radius:12px;padding:16px;border:${i===0?'2px solid var(--red)':'1px solid #eee'};display:flex;flex-direction:column;gap:10px">
+        ${i===0?'<span style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.5px">⚡ Closest</span>':''}
+        <div>
+          <div style="font-weight:700;font-size:15px">${h.name}</div>
+          <div style="font-size:12px;color:var(--gray-500);margin-top:2px">📍 ${h.distance} km · ${h.location}</div>
+        </div>
+        <div>${bedList}</div>
+        <button class="btn btn-red" style="font-size:13px;padding:9px 14px" onclick="openBedModal('${h.id}')">Book bed here →</button>
+      </div>`;
+    }).join('') +
+    `</div>`;
+}
+
+// ── BOOKING MODAL ──
+function openBooking() {
+  populateHospitalSelect();
+  document.getElementById('bookingModal').classList.add('active');
+}
+function openBookingFor(hospitalId) {
+  populateHospitalSelect();
+  document.getElementById('bookHospital').value = hospitalId;
+  loadDeptSlots();
+  document.getElementById('bookingModal').classList.add('active');
+}
+function openBookingForDept(deptName) {
+  populateHospitalSelect();
+  selectedDept = deptName;
+  document.getElementById('bookingModal').classList.add('active');
+  // Filter hospitals to those with this dept
+  const sel = document.getElementById('bookHospital');
+  const hospitals = getHospitals().filter(h => h.departments.includes(deptName));
+  sel.innerHTML = '<option value="">Choose a hospital…</option>' +
+    hospitals.map(h => `<option value="${h.id}">${h.name} — ${h.distance}km</option>`).join('');
+}
+
+function populateHospitalSelect() {
+  const sel = document.getElementById('bookHospital');
+  const hospitals = getHospitals();
+  sel.innerHTML = '<option value="">Choose a hospital…</option>' +
+    hospitals.map(h => `<option value="${h.id}">${h.name} — ${h.distance}km</option>`).join('');
+  document.getElementById('slotSection').style.display = 'none';
+  document.getElementById('patientFormSection').style.display = 'none';
+}
+
+function loadDeptSlots() {
+  const hId = document.getElementById('bookHospital').value;
+  const deptSel = document.getElementById('bookDept');
+  if (!hId) { deptSel.innerHTML = '<option value="">Choose department…</option>'; return; }
+  const h = getHospitals().find(x => x.id === hId);
+  deptSel.innerHTML = '<option value="">Choose department…</option>' +
+    h.departments.map(d => `<option value="${d}">${d}</option>`).join('');
+  document.getElementById('slotSection').style.display = 'none';
+  document.getElementById('patientFormSection').style.display = 'none';
+}
+
+function loadTimeSlots() {
+  const dept = document.getElementById('bookDept').value;
+  if (!dept) return;
+  selectedDept = dept;
+  selectedSlot = '';
+  const slotSection = document.getElementById('slotSection');
+  const slotGrid = document.getElementById('slotGrid');
+  slotSection.style.display = 'block';
+  document.getElementById('patientFormSection').style.display = 'none';
+
+  // Randomly mark some slots as full for realism
+  slotGrid.innerHTML = TIME_SLOTS.map(t => {
+    const booked = Math.random() < 0.3;
+    return `<div class="slot ${booked?'full':''}" onclick="${booked?'':'selectSlot(this, \''+t+'\')'}">${t}${booked?'<br><span style="font-size:10px">Full</span>':''}</div>`;
+  }).join('');
+}
+
+function selectSlot(el, time) {
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSlot = time;
+  document.getElementById('patientFormSection').style.display = 'block';
+}
+
+function confirmBooking() {
+  const name = document.getElementById('patientName').value.trim();
+  const phone = document.getElementById('patientPhone').value.trim();
+  const age = document.getElementById('patientAge').value.trim();
+  const reason = document.getElementById('visitReason').value.trim();
+  const hospital = document.getElementById('bookHospital').value;
+  const dept = document.getElementById('bookDept').value;
+
+  if (!name || !phone || !dept || !selectedSlot || !hospital) {
+    showToast('Please fill all required fields', '⚠️'); return;
+  }
+  const hospitals = getHospitals();
+  const h = hospitals.find(x => x.id === hospital);
+  const bookingId = 'APT' + Date.now().toString().slice(-6);
+  const booking = { id: bookingId, type: 'appointment', hospitalId: hospital, hospitalName: h.name, dept, slot: selectedSlot, name, phone, age, reason, status: 'confirmed', timestamp: new Date().toISOString() };
+  const bookings = getBookings();
+  bookings.push(booking);
+  saveBookings(bookings);
+
+  closeModal('bookingModal');
+  document.getElementById('confirmedContent').innerHTML = `
+    <div style="text-align:center;padding:8px 0 24px">
+      <div style="font-size:48px;margin-bottom:16px">✅</div>
+      <div style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px">Appointment confirmed!</div>
+      <div style="font-size:14px;color:var(--gray-500);margin-bottom:28px">Show this at the hospital reception</div>
+    </div>
+    <div style="background:var(--gray-50);border-radius:12px;padding:20px;border:1px solid var(--gray-100)">
+      <div style="display:grid;gap:12px;font-size:14px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Booking ID</span><strong>${bookingId}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Hospital</span><strong>${h.name}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Department</span><strong>${dept}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Time</span><strong>Today · ${selectedSlot}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Patient</span><strong>${name}</strong></div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--gray-500);text-align:center;margin-top:16px">A summary has been sent to your phone. Arrive 15 minutes before your slot.</p>
+  `;
+  document.getElementById('confirmedModal').classList.add('active');
+}
+
+// ── BED BOOKING MODAL ──
+function openBedModal(hospitalId) {
+  const hospitals = getHospitals();
+  const h = hospitals.find(x => x.id === hospitalId);
+  const content = document.getElementById('bedModalContent');
+
+  const bedsHTML = Object.entries(h.beds).map(([type, data]) => {
+    const cls = data.available > 5 ? 'green' : data.available > 0 ? 'amber' : 'red';
+    const canBook = data.available > 0;
+    return `<div style="border:1.5px solid var(--gray-100);border-radius:12px;padding:18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-weight:700;font-size:16px">${type}</div>
+        <div style="font-size:13px;color:var(--gray-500);margin-top:4px">${data.total} total · <span style="color:var(--${cls});font-weight:600">${data.available} available</span></div>
+      </div>
+      ${canBook
+        ? `<button class="btn btn-red" style="padding:10px 18px;font-size:13px" onclick="bookBed('${hospitalId}','${type}')">Book →</button>`
+        : `<span style="font-size:13px;color:var(--gray-300);font-weight:500">Full</span>`}
+    </div>`;
+  }).join('');
+
+  content.innerHTML = `
+    <div style="margin-bottom:20px">
+      <div style="font-weight:700;font-size:17px">${h.name}</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:4px">📍 ${h.location} · ${h.distance} km away</div>
+    </div>
+    ${bedsHTML}
+    <div id="bedPatientForm" style="display:none;margin-top:20px">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px;color:var(--gray-700)">Patient details</div>
+      <div class="form-group"><label class="form-label">Patient name</label><input type="text" class="form-input" id="bedPatientName" placeholder="Full name"/></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="bedPatientPhone" placeholder="+91 98765 43210"/></div>
+        <div class="form-group"><label class="form-label">Age</label><input type="number" class="form-input" id="bedPatientAge" placeholder="Age"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Condition / diagnosis</label><input type="text" class="form-input" id="bedCondition" placeholder="e.g. Post-surgery recovery, Fracture…"/></div>
+      <button class="btn btn-red" style="width:100%;padding:14px;font-size:16px;border-radius:12px" onclick="confirmBedBooking('${hospitalId}')">Confirm bed booking →</button>
+    </div>
+  `;
+  document.getElementById('bedModal').classList.add('active');
+}
+
+let selectedBedType = '';
+function bookBed(hospitalId, bedType) {
+  selectedBedType = bedType;
+  document.getElementById('bedPatientForm').style.display = 'block';
+  document.getElementById('bedPatientForm').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function confirmBedBooking(hospitalId) {
+  const name = document.getElementById('bedPatientName').value.trim();
+  const phone = document.getElementById('bedPatientPhone').value.trim();
+  const age = document.getElementById('bedPatientAge').value.trim();
+  const condition = document.getElementById('bedCondition').value.trim();
+  if (!name || !phone || !selectedBedType) { showToast('Please fill all required fields','⚠️'); return; }
+
+  const hospitals = getHospitals();
+  const hIdx = hospitals.findIndex(x => x.id === hospitalId);
+  if (hospitals[hIdx].beds[selectedBedType].available <= 0) { showToast('Sorry, this bed type is now full','❌'); return; }
+  hospitals[hIdx].beds[selectedBedType].available--;
+  saveHospitals(hospitals);
+
+  const bookingId = 'BED' + Date.now().toString().slice(-6);
+  const booking = { id: bookingId, type: 'bed', hospitalId, hospitalName: hospitals[hIdx].name, bedType: selectedBedType, name, phone, age, condition, status: 'confirmed', timestamp: new Date().toISOString() };
+  const bookings = getBookings();
+  bookings.push(booking);
+  saveBookings(bookings);
+
+  closeModal('bedModal');
+  document.getElementById('confirmedContent').innerHTML = `
+    <div style="text-align:center;padding:8px 0 24px">
+      <div style="font-size:48px;margin-bottom:16px">🛏️</div>
+      <div style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px">Bed reserved!</div>
+      <div style="font-size:14px;color:var(--gray-500);margin-bottom:28px">Please arrive within 2 hours to confirm admission</div>
+    </div>
+    <div style="background:var(--gray-50);border-radius:12px;padding:20px;border:1px solid var(--gray-100)">
+      <div style="display:grid;gap:12px;font-size:14px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Booking ID</span><strong>${bookingId}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Hospital</span><strong>${hospitals[hIdx].name}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Bed type</span><strong>${selectedBedType}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Patient</span><strong>${name}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">Status</span><strong style="color:var(--green)">✓ Reserved</strong></div>
+      </div>
+    </div>
+    <div style="background:rgba(232,41,58,0.06);border:1px solid rgba(232,41,58,0.2);border-radius:10px;padding:14px;margin-top:16px;font-size:13px;color:var(--red)">
+      ⚠️ Carry a valid photo ID and this booking ID to the hospital admission counter.
+    </div>
+  `;
+  document.getElementById('confirmedModal').classList.add('active');
+  renderHospitals(currentFilter);
+  if (document.getElementById('emergencyPanel').classList.contains('active')) renderEmergencyResults();
+}
+
+// ── UTILS ──
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior:'smooth' }); }
+let toastTimer;
+function showToast(msg, icon='✅') {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = icon;
+  t.classList.add('active');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('active'), 3500);
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('active'); });
+});
+
+// ── INIT ──
+renderHospitals('all');
+renderDepts('popular');
+</script>
+</body>
+</html>
