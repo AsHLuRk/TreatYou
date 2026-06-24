@@ -1,0 +1,145 @@
+.my-appointments {
+  min-height: calc(100vh - 68px);
+  padding: 52px 0 96px;
+}
+
+.appt-header { margin-bottom: 28px; }
+.appt-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.appt-header p { color: var(--muted); }
+
+.appt-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: var(--r-full);
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+.appt-tab {
+  padding: 0.58rem 1.2rem;
+  border-radius: var(--r-full);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.appt-tab.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.28);
+}
+
+.appt-tab:hover:not(.active) { color: var(--ink); background: var(--bg); }
+
+.appt-list { display: grid; gap: 12px; }
+
+.appt-card {
+  border-radius: var(--r-xl);
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.appt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.appt-card.confirmed::before { background: var(--green); }
+.appt-card.pending::before { background: var(--amber); }
+.appt-card.completed::before { background: var(--primary); }
+
+.appt-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.appt-date-badge {
+  width: 52px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.appt-date-day {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.appt-date-mon {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.appt-divider {
+  width: 1px;
+  height: 44px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.appt-info {}
+.appt-doctor { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 3px; }
+.appt-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.appt-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: var(--muted); }
+.appt-meta-item svg { color: var(--muted-light); }
+
+.appt-status {
+  padding: 5px 12px;
+  border-radius: var(--r-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.status-confirmed { background: var(--green-soft); color: var(--green); }
+.status-pending { background: var(--amber-soft); color: var(--amber); }
+.status-completed { background: var(--primary-light); color: var(--primary); }
+
+.appt-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--muted);
+}
+
+.appt-empty svg { opacity: 0.3; margin-bottom: 14px; }
+.appt-empty h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px; color: var(--ink); }
+
+@media (max-width: 600px) {
+  .appt-card { grid-template-columns: 1fr; gap: 10px; }
+  .appt-date-badge { display: flex; gap: 6px; align-items: baseline; }
+  .appt-date-day { font-size: 1.2rem; }
+  .appt-divider { display: none; }
+}

@@ -1,0 +1,320 @@
+.hospital-map-page {
+  min-height: calc(100vh - 68px);
+  padding: 52px 0 96px;
+}
+
+.map-header { margin-bottom: 28px; }
+.map-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.map-header p { color: var(--muted); }
+
+.map-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 5px;
+  border-radius: var(--r-full);
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.55rem 1rem;
+  border-radius: var(--r-full);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.view-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.28);
+}
+
+.view-btn:hover:not(.active) { color: var(--ink); }
+
+.map-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 360px;
+}
+
+.map-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-light);
+  pointer-events: none;
+}
+
+.map-search-input {
+  width: 100%;
+  padding: 0.72rem 1rem 0.72rem 2.6rem;
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--border);
+  background: white;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.map-search-input:focus {
+  border-color: rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.08);
+}
+
+/* Loading skeleton */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  gap: 14px;
+  color: var(--muted);
+}
+
+.loading-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Map placeholder */
+.map-placeholder {
+  width: 100%;
+  height: 440px;
+  border-radius: var(--r-2xl);
+  background: linear-gradient(135deg, var(--primary-light), rgba(30,157,107,0.07));
+  border: 1px solid rgba(var(--primary-rgb), 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(var(--primary-rgb), 0.06) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(var(--primary-rgb), 0.06) 40px);
+}
+
+.map-placeholder-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: grid; place-items: center;
+  box-shadow: var(--shadow-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.map-placeholder h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  position: relative; z-index: 1;
+}
+
+.map-placeholder p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  position: relative; z-index: 1;
+  max-width: 36ch;
+  text-align: center;
+}
+
+.map-pin-cluster {
+  position: absolute;
+  display: grid;
+  place-items: center;
+}
+
+.map-pin {
+  position: absolute;
+  width: 36px; height: 36px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--primary);
+  color: white;
+  display: grid; place-items: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 14px rgba(var(--primary-rgb), 0.4);
+  animation: pin-bounce 3s ease-in-out infinite;
+}
+
+.map-pin > * { transform: rotate(45deg); }
+.map-pin:nth-child(1) { top: -100px; left: 80px; animation-delay: 0s; }
+.map-pin:nth-child(2) { top: -40px; left: -120px; background: var(--green); animation-delay: 0.8s; }
+.map-pin:nth-child(3) { top: 60px; left: 150px; background: var(--accent); animation-delay: 1.6s; }
+
+@keyframes pin-bounce {
+  0%, 100% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(-8px); }
+}
+
+/* Hospitals list */
+.hospitals-list { display: grid; gap: 14px; }
+
+.hospital-card {
+  border-radius: var(--r-xl);
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: start;
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+  cursor: pointer;
+}
+
+.hospital-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--primary-rgb), 0.18);
+}
+
+.hospital-card.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.12), var(--shadow-sm);
+}
+
+.hosp-main {}
+
+.hosp-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.hosp-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.hosp-open-badge {
+  padding: 3px 9px;
+  border-radius: var(--r-full);
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hosp-addr {
+  font-size: 0.83rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hosp-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.hosp-chip {
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.hosp-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hosp-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.hosp-meta-item svg { color: var(--muted-light); }
+
+.hosp-side {
+  text-align: right;
+  min-width: 90px;
+}
+
+.hosp-dist {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.hosp-rating {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 10px;
+}
+
+.hosp-book-btn { width: 100%; justify-content: center; }
+
+@media (max-width: 600px) {
+  .hospital-card { grid-template-columns: 1fr; }
+  .hosp-side { text-align: left; display: flex; gap: 14px; align-items: center; }
+  .hosp-book-btn { width: auto; }
+}

@@ -1,0 +1,240 @@
+.book-appointment {
+  min-height: calc(100vh - 68px);
+  padding: 52px 0 96px;
+}
+
+.booking-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.booking-header { margin-bottom: 32px; }
+
+.booking-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.booking-header p { color: var(--muted); font-size: 1rem; }
+
+/* Stepper */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 32px;
+  padding: 20px 24px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+.stepper-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.stepper-item:not(:last-child)::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: var(--border);
+  margin: 0 8px;
+  transition: background var(--t-base);
+}
+
+.stepper-item.completed:not(:last-child)::after {
+  background: var(--primary);
+}
+
+.step-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  transition: all var(--t-base);
+}
+
+.stepper-item.active .step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 14px rgba(var(--primary-rgb), 0.35);
+}
+
+.stepper-item.completed .step-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.step-info { min-width: 0; }
+
+.step-info-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+}
+
+.step-info-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  transition: color var(--t-fast);
+}
+
+.stepper-item.active .step-info-name,
+.stepper-item.completed .step-info-name { color: var(--ink); }
+
+/* Form card */
+.booking-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-step-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+}
+
+.booking-step-sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 28px;
+}
+
+.booking-fields { display: grid; gap: 20px; }
+.booking-fields-2col { grid-template-columns: 1fr 1fr; }
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.time-slot-btn {
+  padding: 0.75rem;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--ink-mid);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--t-fast);
+}
+
+.time-slot-btn:hover {
+  border-color: rgba(var(--primary-rgb), 0.3);
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.time-slot-btn.selected {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.28);
+}
+
+.hospital-select-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.hospital-opt {
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--t-fast);
+}
+
+.hospital-opt:hover {
+  border-color: rgba(var(--primary-rgb), 0.3);
+  background: var(--primary-light);
+}
+
+.hospital-opt.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+.hospital-opt-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); margin-bottom: 3px; }
+.hospital-opt-sub { font-size: 0.76rem; color: var(--muted); }
+
+/* Nav buttons */
+.booking-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  gap: 12px;
+}
+
+.booking-nav-left { display: flex; gap: 10px; }
+
+/* Success state */
+.booking-success {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.success-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  border: 2px solid rgba(30,157,107,0.2);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+}
+
+.booking-success h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.booking-success p { color: var(--muted); margin-bottom: 28px; }
+
+@media (max-width: 640px) {
+  .booking-card { padding: 24px 20px; }
+  .booking-fields-2col { grid-template-columns: 1fr; }
+  .time-slots { grid-template-columns: repeat(2, 1fr); }
+  .hospital-select-grid { grid-template-columns: 1fr; }
+  .stepper { gap: 6px; padding: 16px; }
+  .step-info { display: none; }
+}
